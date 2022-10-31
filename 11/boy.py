@@ -17,10 +17,16 @@ key_event_table = {
 
 class AUTO_RUN:
     def enter(self, event):
-
+        if event == RD:
+            self.dir += 1
+        elif event == LD:
+            self.dir -= 1
+        elif event == RU:
+            self.dir -= 1
+        elif event == LU:
+            self.dir += 1
         pass
     def exit(self):
-
         pass
     def do(self):
         # 달리게 만들어 준다
@@ -124,7 +130,7 @@ next_state = {
     IDLE    : {RU: RUN , LU: RUN   , RD: RUN   , LD: RUN   ,AD: AUTO_RUN ,TIMER: SLEEP},
     RUN     : {RU: IDLE, LU: IDLE  , RD: IDLE  , LD: IDLE  ,AD: AUTO_RUN },
     SLEEP   : {RU: RUN , LU: RUN   , RD: RUN   , LD: RUN},
-    AUTO_RUN: {RU: RUN , LU: RUN   , RD: RUN   , LD: RUN, AD: IDLE }
+    AUTO_RUN: {RU: AUTO_RUN , LU: AUTO_RUN   , RD: RUN   , LD: RUN, AD: IDLE }
 }
 
 class Boy:
